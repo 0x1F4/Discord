@@ -15,7 +15,7 @@ bot = commands.Bot(
     intents=intents,
 )
 
-print('Подпишись на тг, создателя этого говнокода https://t.me/p4rc3r_channel')
+print('Подпишись на тг создателя этого говнокода https://t.me/p4rc3r_channel')
 
 
 
@@ -65,7 +65,6 @@ async def ban_user(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
     time.sleep(5)
     await ctx.message.delete(delay=0)
-
 
 @bot.command(name="unban", brief="Разбанить мембера на сервере", usage="unban <user_id>")
 @commands.has_permissions(ban_members=True)
@@ -261,13 +260,62 @@ async def credits(ctx):
                                 f"https://lolz.guru/threads/4274519/")
     await ctx.send(embed=embed)
 
+
 @bot.command()
-async def avatar(ctx, member: discord.Member  = None):
+async def info(ctx,member:discord.Member = None, guild: discord.Guild = None):
     if member == None:
-        member = ctx.author
-    embed = discord.Embed(color = 0x22ff00, title = f"Аватар участника - {member.name}", description = f"[Нажмите что бы скачать аватар]({member.avatar})")
-    embed.set_image(url = member.avatar)
-    await ctx.send(embed = embed)
+        emb = discord.Embed(title="Информация о пользователе", color=ctx.message.author.color)
+        emb.add_field(name="Имя:", value=ctx.message.author.display_name,inline=False)
+        emb.add_field(name="Айди пользователя:", value=ctx.message.author.id,inline=False)
+        t = ctx.message.author.status
+        if t == discord.Status.online:
+            d = " В сети"
+
+        t = ctx.message.author.status
+        if t == discord.Status.offline:
+            d = "⚪ Не в сети"
+
+        t = ctx.message.author.status
+        if t == discord.Status.idle:
+            d = " Не активен"
+
+        t = ctx.message.author.status
+        if t == discord.Status.dnd:
+            d = " Не беспокоить"
+
+        emb.add_field(name="Активность:", value=d,inline=False)
+        emb.add_field(name="Статус:", value=ctx.message.author.activity,inline=False)
+        emb.add_field(name="Роль на сервере:", value=f"{ctx.message.author.top_role.mention}",inline=False)
+        emb.add_field(name="Акаунт был создан:", value=ctx.message.author.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC"),inline=False)
+        emb.set_thumbnail(url=ctx.message.author.avatar)
+        await ctx.send(embed = emb)
+    else:
+        emb = discord.Embed(title="Информация о пользователе", color=member.color)
+        emb.add_field(name="Имя:", value=member.display_name,inline=False)
+        emb.add_field(name="Айди пользователя:", value=member.id,inline=False)
+        t = member.status
+        if t == discord.Status.online:
+            d = " В сети"
+
+        t = member.status
+        if t == discord.Status.offline:
+            d = "⚪ Не в сети"
+
+        t = member.status
+        if t == discord.Status.idle:
+            d = " Не активен"
+
+        t = member.status
+        if t == discord.Status.dnd:
+            d = " Не беспокоить"
+        emb.add_field(name="Активность:", value=d,inline=False)
+        emb.add_field(name="Статус:", value=member.activity,inline=False)
+        emb.add_field(name="Роль на сервере:", value=f"{member.top_role.mention}",inline=False)
+        emb.add_field(name="Акаунт был создан:", value=member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC"),inline=False)
+        emb.set_footer(text=f"Выполнено " + ctx.author.name + "#" + ctx.author.discriminator,
+                         icon_url=ctx.author.avatar)
+        await ctx.send(embed = emb)
+
 
 TOKEN = 'MTAxMjc3NjYzODg4MDE2MTg2Mg.Ghg-o5.FoAHpQBAlXhv8lbxKVRI1-BSPXtYFVyGJDwmdg'
 bot.run(TOKEN)
