@@ -312,7 +312,7 @@ async def on_voice_state_update(member, before, after):
 
 
 
-TOKEN = ''
+TOKEN = ' '
 client.run(TOKEN)
 
 
