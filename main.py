@@ -317,7 +317,7 @@ async def info(ctx,member:discord.Member = None, guild: discord.Guild = None):
         await ctx.send(embed = emb)
 
 
-TOKEN = 'MTAxMjc3NjYzODg4MDE2MTg2Mg.Ghg-o5.FoAHpQBAlXhv8lbxKVRI1-BSPXtYFVyGJDwmdg'
+TOKEN = ''
 bot.run(TOKEN)
 
 
