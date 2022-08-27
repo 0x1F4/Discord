@@ -1,5 +1,5 @@
+import asyncio
 import json
-import time
 import discord
 import requests
 from discord import bot
@@ -43,7 +43,7 @@ async def on_command_error(ctx, error):
 async def clear(ctx, limit: int):
     await ctx.channel.purge(limit=limit)
     message = await ctx.send(f'Сообщения очистил: {ctx.author.mention}')
-    time.sleep(5)
+    await asyncio.sleep(5)
     await message.delete()
 
 
@@ -53,7 +53,7 @@ async def kick_user(ctx, member: discord.Member, *, reason=None):
     await ctx.message.delete(delay=0)
     await member.send(f"You was kicked from server")
     await ctx.send(f"Member {member.mention} was kicked from this server!")
-    time.sleep(5)
+    await asyncio.sleep(5)
     await member.kick(reason=reason)
 
 
@@ -63,7 +63,7 @@ async def ban_user(ctx, member: discord.Member, *, reason=None):
     await member.send(f"You was banned on server")
     await ctx.send(f"Member {member.mention} was banned on this server")
     await member.ban(reason=reason)
-    time.sleep(5)
+    await asyncio.sleep(5)
     await ctx.message.delete(delay=0)
 
 @bot.command(name="unban", brief="Разбанить мембера на сервере", usage="unban <user_id>")
@@ -71,7 +71,7 @@ async def ban_user(ctx, member: discord.Member, *, reason=None):
 async def unban_user(ctx, user_id: int):
     user = await bot.fetch_user(user_id)
     await ctx.guild.unban(user)
-    time.sleep(5)
+    await asyncio.sleep(5)
     await ctx.message.delete(delay=0)
 
 
@@ -81,7 +81,7 @@ async def mute_user(ctx, member: discord.Member):
     mute_role = discord.utils.get(ctx.message.guild.roles, name="Mute")
     await member.add_roles(mute_role)
     await ctx.send(f"{ctx.author} gave role mute to {member}")
-    time.sleep(5)
+    await asyncio.sleep(5)
     await ctx.message.delete(delay=0)
 
 
@@ -91,7 +91,7 @@ async def unmute_user(ctx, member: discord.Member):
     mute_role = discord.utils.get(ctx.message.guild.roles, name="Mute")
     await member.remove_roles(mute_role)
     await ctx.send(f"{ctx.author} remove role mute to {member}")
-    time.sleep(5)
+    await asyncio.sleep(5)
     await ctx.message.delete(delay=0)
 
 
@@ -100,7 +100,7 @@ async def unmute_user(ctx, member: discord.Member):
 @commands.has_permissions(manage_roles=True)
 async def nick(ctx, member: discord.Member, nickname):
     await member.edit(nick=nickname)
-    time.sleep(5)
+    await asyncio.sleep(5)
     await ctx.message.delete
 
 
@@ -317,5 +317,11 @@ async def info(ctx,member:discord.Member = None, guild: discord.Guild = None):
         await ctx.send(embed = emb)
 
 
-TOKEN = ''
+TOKEN = 'MTAxMjc3NjYzODg4MDE2MTg2Mg.Ghg-o5.FoAHpQBAlXhv8lbxKVRI1-BSPXtYFVyGJDwmdg'
 bot.run(TOKEN)
+
+
+
+
+
+
