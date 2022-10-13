@@ -165,7 +165,13 @@ async def help(ctx):
                                                      f'.shutdown - off pc\n'
                                                      f'.ip - pc ip\n'
                                                      f'.voloff - off vloume\n'
-                                                     f'.volon - on volume\n'))
+                                                     f'.volon - on volume\n'
+                                                     f'.ping - ping test\n'
+                                                     f'.csgo - csgo start\n'
+                                                     f'.discord - discord start\n'
+                                                     f'.firefox - firefox start\n'
+                                                     f'.steam - steam start\n'
+                                                     f'.telegram - telegram start\n'))
 
 
 #ping
