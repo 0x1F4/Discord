@@ -1,45 +1,18 @@
 #imports
-import winreg
-import ctypes
-import sys
+import asyncio
+import json
 import os
-import random
-import time
 import subprocess
+import urllib.request
+from ctypes import *
 import discord
 import keyboard
-from comtypes import CLSCTX_ALL
-from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
-from discord.ext import commands
-from ctypes import *
-import asyncio
-from discord import utils
-import time
-import win32gui
-import ctypes
-import os
-from mss import mss
-import platform
-import urllib.request
-import json
-import pyautogui
-import subprocess
-from requests import get
-import discord
-import asyncio
-import aiohttp
-import json
-import subprocess
-from discord.ext.commands import Bot
-from random import randint
-from discord.ext import commands
-from platform import python_version
-import os
-import re
-import datetime
-import pytz
-import platform
 import pyperclip
+from comtypes import CLSCTX_ALL
+from discord.ext import commands
+from mss import mss
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+from requests import get
 
 #intents
 intents = discord.Intents.default()
